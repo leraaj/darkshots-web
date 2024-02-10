@@ -1,38 +1,41 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
-import MenuOpenIcon from "@mui/icons-material/MenuOpen";
-import MenuIcon from "@mui/icons-material/Menu";
+import SimpleButton from "../../buttons/SimpleButton";
+import logo from "../../../assets/images/brand/darkshot-logo.png";
 import { useInternalContext } from "../../../hooks/useInternalContext";
 const Navbar = () => {
   const navigate = useNavigate();
-  const role = 1;
+  const isLoggedin = true;
   const { isToggled, sidebarToggler } = useInternalContext();
   return (
-    <div className={`navbar-container shadow ${role && "navbar-active  "}`}>
-      <div className="bg-transparent col">
-        {role ? (
-          <button className="btn btn-sm btn-dark" onClick={sidebarToggler}>
-            {isToggled ? <MenuIcon /> : <MenuOpenIcon />}
-          </button>
-        ) : (
-          <Link className="nav-link" to={"/"}>
-            Darkshot Productions
-          </Link>
-        )}
-      </div>
-      <div className="bg-transparent col d-flex justify-content-end gap-2 text-capitalize">
-        {role ? (
-          <button className="btn btn-sm btn-danger">logout</button>
-        ) : (
+    <div className={`navbar ${isLoggedin && "internal-navbar-active "}`}>
+      <div className="col d-flex justify-content-end gap-2 container-fluid ">
+        <div className="col d-flex align-items-center">
+          {!isLoggedin && <img src={logo} className="logo" />}
+        </div>
+        {!isLoggedin ? (
           <>
-            <Link className="nav-link" to={"/login"}>
-              Login
-            </Link>
-            <Link className="nav-link" to={"/register"}>
-              Register
-            </Link>
+            <SimpleButton
+              className={"rounded-0"}
+              color={"dark"}
+              size={""}
+              label={"Register"}
+            />
+            <SimpleButton
+              className={"rounded-0"}
+              color={"outline-dark"}
+              size={""}
+              label={"Login"}
+            />
           </>
+        ) : (
+          <SimpleButton
+            className={"rounded-0"}
+            color={"danger"}
+            size={""}
+            label={"Logout"}
+          />
         )}
       </div>
     </div>

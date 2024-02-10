@@ -1,78 +1,50 @@
-:root {
-  --bg-color: #252525;
-  --border-color: #252525;
-  --divider-color: #474747;
-  --link-color: #e0e0e0;
-  --link-active: #ffffff;
-  --gap-size: 17px;
+* {
+  --bg-dark-1: #0f0f0f;
+
+  --color-light-1: #ffffff;
+  --color-light-2: #d3d3d3;
+
+  --link-gaps: 0.6rem;
+
+  --list-indention: 1.8rem;
 }
-.sidebar-logo {
-  height: 28px;
-}
-.sidebar-layout {
-  height: 100%;
-  width: 270px;
+.toggler-button {
   display: flex;
-  flex-flow: column nowrap;
-  background-color: var(--bg-color);
-  border-right: 0.2px var(--divider-color) solid;
-}
-.sidebar-toggled {
-  width: 80px;
-}
-.sidebar-header {
   justify-content: center;
-  border-bottom: 0.2px var(--divider-color) solid;
-}
-.sidebar-header,
-.sidebar-footer {
-  height: 56px;
-  display: flex;
   align-items: center;
+  position: absolute;
+  z-index: 2;
 }
-.sidebar-body {
-  height: calc(100% - 56px - 56px);
-  display: flex;
-  align-items: start;
-  margin: 0px;
-  padding: 0px;
-  padding-top: 1rem;
-  overflow: auto;
-}
-.sidebar-body ul {
-  width: 100%;
+.ul-list {
+  text-decoration: none;
   list-style: none;
-  padding: 0px;
+  padding: 0;
+  margin: 0;
+  margin-top: 15px;
+  padding-inline-start: var(--list-indention);
 }
+.li-list {
+  padding-block: var(--link-gaps);
+}
+.li-list-active {
+  color: var(--color-light-1);
+}
+
 .link-list {
   text-decoration: none;
+  color: var(--color-light-2);
 }
-.sidebar-body li {
-  color: var(--link-color);
-  padding-inline: 1.5rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 45px;
+.sidebar-text {
+  margin-inline: 1rem;
+  /* border: 1px red solid; */
   text-transform: capitalize;
 }
-.sidebar-body li:hover {
-  color: var(--link-active);
-}
-.sidebar-body li:active,
-.sidebar-body li:focus,
-.li-active {
-  color: var(--link-active);
-  padding-inline: 1.5rem;
-  width: 100%;
+.logo-container {
+  height: 58px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  height: 45px;
-  text-transform: capitalize;
-  border-right: 5px var(--link-color) solid;
-  padding-inline-end: calc(1.5rem - 5px);
 }
-.sidebar-body li,
-li-active {
-  gap: var(--gap-size);
+.logo {
+  height: 30px;
 }

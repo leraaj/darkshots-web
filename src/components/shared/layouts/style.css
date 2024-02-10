@@ -1,0 +1,41 @@
+* {
+  --bg-dark-1: #070707;
+  --bg-dark-2: #262626;
+
+  --color-light-1: #ffffff;
+  --color-light-2: #d3d3d3;
+}
+
+/* MAIN CONTAINERS */
+.internal-layout-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  background-color: var(--bg-dark-1);
+}
+.content-container {
+  background-color: var(--bg-dark-1);
+  width: 100%;
+  overflow: auto;
+}
+.sidebar-container {
+  background-color: var(--bg-dark-2);
+  width: 260px;
+  transition: width 0.3s ease-in-out;
+}
+.is-close {
+  width: 90px;
+}
+/* LAYOUT COMPONENTS */
+.navbar {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding-inline: 2rem;
+  backdrop-filter: blur(10px);
+  background-color: var(--bg-dark-1);
+}
+.content {
+  color: var(--color-light-1);
+  padding: 2rem 1.5rem;
+}

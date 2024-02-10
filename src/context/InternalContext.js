@@ -4,7 +4,7 @@ import { createContext, useState } from "react";
 export const InternalContext = createContext();
 
 export const InternalContextProvider = ({ children }) => {
-  const [isToggled, setIsToggled] = useState(true);
+  const [isToggled, setIsToggled] = useState(false);
   const sidebarToggler = () => {
     setIsToggled(!isToggled);
   };

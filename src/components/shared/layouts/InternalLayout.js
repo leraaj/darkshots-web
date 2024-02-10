@@ -1,29 +1,26 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import "./style.css";
+import SimpleButton from "../../buttons/SimpleButton";
+import { useInternalContext } from "../../../hooks/useInternalContext";
+
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import MenuIcon from "@mui/icons-material/Menu";
+import logo from "../../../assets/images/brand/darkshot-logo.png";
 import Navbar from "../navbar/Navbar";
 import Sidebar from "../sidebar/Sidebar";
 
-const InternalLayout = ({ children }) => {
-  const layoutStyle = { height: "100dvh", display: "flex" };
-  const sidebarStyle = {
-    height: "100%",
-    width: "256px",
-    border: "1px solid blue",
-  };
-  const contentLayoutStyle = {
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    flexFlow: "column nowrap",
-  };
-  const contentStyle = { overflow: "auto", padding: "1.5rem" };
+const InternalLayout = () => {
+  const { isToggled, sidebarToggler } = useInternalContext();
+  const isLoggedin = true;
+
   return (
     <>
-      <div style={layoutStyle}>
+      <div className="internal-layout-container">
         <Sidebar />
-        <div style={contentLayoutStyle}>
+        <div className="content-container">
           <Navbar />
-          <div style={contentStyle}>
+          <div className="content">
             <Outlet />
           </div>
         </div>

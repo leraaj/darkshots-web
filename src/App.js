@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Landing from "./pages/external/landing/Index";
 import Login from "./pages/external/login/Index";
-import Registrar from "./pages/external/registrar/Index";
+import Register from "./pages/external/register/Index";
 import Accounts from "./pages/internal/accounts/Index";
 import Applicants from "./pages/internal/applicants/Index";
 import Clients from "./pages/internal/clients/Index";
@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/registrar" element={<Registrar />} />
+        <Route path="/register" element={<Register />} />
         {/* Add internal layout */}
         <Route element={<InternalLayout />}>
           <Route path={"/accounts"} element={<Accounts />} />

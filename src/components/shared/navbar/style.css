@@ -1,12 +1,16 @@
-.navbar-container {
-  width: 100%;
+.navbar {
+  height: 60px;
   display: flex;
   align-items: center;
-  padding: 1rem;
   background-color: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
-  height: 56px;
 }
-.navbar-active {
-  background-color: white;
+
+.internal-navbar-active {
+  background-color: #262626 !important;
+  backdrop-filter: none;
+  color: white;
+}
+.logo {
+  height: 33px;
 }

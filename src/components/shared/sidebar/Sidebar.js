@@ -2,73 +2,63 @@ import React, { useState } from "react";
 import { lists } from "./links";
 import { Link, useLocation } from "react-router-dom";
 import "./style.css";
+import SimpleButton from "../../buttons/SimpleButton";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../../assets/images/brand/darkshot-logo.png";
-import logoCollapsed from "../../../assets/images/brand/collapseLogo.ico";
+import logoToggled from "../../../assets/images/brand/darkshot-logo-collapsed.png";
 import { useInternalContext } from "../../../hooks/useInternalContext";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 const Sidebar = () => {
-  const { isToggled } = useInternalContext();
-  const position = 1;
+  const { isToggled, sidebarToggler } = useInternalContext();
   const location = useLocation();
-  const pathname = location.pathname.replace(/^\/|\/$/g, "");
-
+  const isLoggedin = true;
+  const position = 1;
   return (
-    <div className={`sidebar-layout ${isToggled && "sidebar-toggled"} shadow`}>
-      <div className="sidebar-header ">
-        <img src={isToggled ? logoCollapsed : logo} className="sidebar-logo" />
-      </div>
-      <div className="sidebar-body">
-        <ul>
-          {lists.map((nav, index) => {
-            if (nav.role === position) {
-              return isToggled ? (
-                <>
-                  <OverlayTrigger
-                    key={"right"}
-                    placement={"right"}
-                    overlay={
-                      <Tooltip id="tooltip-disabled">
-                        <span className="text-capitalize">{nav.name}</span>
-                      </Tooltip>
-                    }>
-                    <Link
-                      className="link-list d-flex justify-content-center"
-                      to={nav.link}
-                      key={index}>
-                      <li
-                        className={`${
-                          pathname === nav.link.replace(/^\/|\/$/g, "")
-                            ? "li-active"
-                            : null
-                        }`}>
-                        {nav.icon}
-                      </li>
-                    </Link>
-                  </OverlayTrigger>
-                </>
+    <div className={`sidebar-container ${isToggled && "is-close"}`}>
+      <div className="logo-container position-relative  ">
+        <img src={isToggled ? logoToggled : logo} className="logo" />
+        {isLoggedin && (
+          <SimpleButton
+            className={`toggler-button text-light rounded-pill text-light top-50 start-100 translate-middle p-2 border border-2`}
+            color={"dark"}
+            label={
+              isToggled ? (
+                <MenuIcon fontSize="medium" />
               ) : (
-                <Link
-                  className="link-list d-flex justify-content-center"
-                  to={nav.link}
-                  key={index}>
-                  <li
-                    className={`${
-                      pathname === nav.link.replace(/^\/|\/$/g, "")
-                        ? "li-active"
-                        : null
-                    }`}>
-                    {nav.icon}
-                    {!isToggled && (
-                      <div className="col text-start ">{nav.name}</div>
-                    )}
-                  </li>
-                </Link>
-              );
+                <MenuOpenIcon fontSize="medium" />
+              )
             }
-          })}
-        </ul>
+            onClick={sidebarToggler}
+          />
+        )}
       </div>
-      <div className="sidebar-footer"></div>
+      <ul className="ul-list">
+        {lists.map((nav, index) => {
+          const path = location.pathname;
+          const navpath = nav.link;
+          if (nav.role === position) {
+            return (
+              <Link
+                to={nav.link}
+                className={`link-list ${
+                  path === navpath && "link-list-active"
+                }`}
+                key={index}>
+                <li
+                  className={`li-list ${
+                    path === navpath && "li-list-active"
+                  } d-flex justify-content-start 
+                  }`}>
+                  <span className="sidebar-icon ">{nav.icon}</span>
+                  {!isToggled && (
+                    <span className="sidebar-text">{nav.name}</span>
+                  )}
+                </li>
+              </Link>
+            );
+          }
+        })}
+      </ul>
     </div>
   );
 };
