@@ -1,0 +1,33 @@
+/* Form Label */
+.form-label {
+  position: relative;
+  top: 18px;
+  left: 0px;
+  color: var(--color-light-2) !important;
+  background-color: var(--main-bg);
+  font-family: "Poppins-Regular";
+  font-size: smaller;
+  padding-inline-end: 0.5rem;
+}
+/* INPUTS */
+.form-control,
+.form-select {
+  background-color: var(--main-bg) !important;
+  padding-inline: 0.8rem !important;
+  height: 45px;
+  margin-block: 0;
+  border-radius: 0 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  color: var(--color-light-1) !important;
+}
+/* Focus Ring on INPUTS */
+.form-control:focus,
+.form-select:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #fff !important;
+  outline: 0;
+  box-shadow: 0 0.2rem rgba(255, 255, 255, 0.25) !important;
+}

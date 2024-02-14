@@ -1,6 +1,26 @@
-* {
-  /* color: #fefefe; */
+@font-face {
+  font-family: "Poppins-Regular";
+  src: local("Poppins-Regular"),
+    url("../assets/fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: bold;
 }
-body {
-  /* background-color: #121212 !important; */
+@font-face {
+  font-family: "Poppins-Medium";
+  src: local("Poppins-Medium"),
+    url("../assets/fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: bold;
+}
+* {
+  --main-bg: var(--bg-dark-2);
+
+  --bg-dark-1: #000000;
+  --bg-dark-2: #212529;
+  --bg-light-1: #ffffff;
+  --bg-light-2: #d9d9d9;
+
+  --color-light-1: #ffffff;
+  --color-light-2: #b3b3b3;
+
+  --link-gaps: 0.6rem;
+  --list-indention: 1.8rem;
 }

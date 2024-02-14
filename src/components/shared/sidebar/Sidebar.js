@@ -15,22 +15,12 @@ const Sidebar = () => {
   const position = 1;
   return (
     <div className={`sidebar-container ${isToggled && "is-close"}`}>
-      <div className="logo-container position-relative  ">
-        <img src={isToggled ? logoToggled : logo} className="logo" />
-        {isLoggedin && (
-          <SimpleButton
-            className={`toggler-button text-light rounded-pill text-light top-50 start-100 translate-middle p-2 border border-2`}
-            color={"dark"}
-            label={
-              isToggled ? (
-                <MenuIcon fontSize="medium" />
-              ) : (
-                <MenuOpenIcon fontSize="medium" />
-              )
-            }
-            onClick={sidebarToggler}
-          />
-        )}
+      <div className="logo-container ">
+        <img src={logo} className={`logo ${!isToggled ? "active" : ""}`} />
+        <img
+          src={logoToggled}
+          className={`logo ${isToggled ? "active" : ""}`}
+        />
       </div>
       <ul className="ul-list">
         {lists.map((nav, index) => {

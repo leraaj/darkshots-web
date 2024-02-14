@@ -1,25 +1,17 @@
-* {
-  --bg-dark-1: #070707;
-  --bg-dark-2: #262626;
-
-  --color-light-1: #ffffff;
-  --color-light-2: #d3d3d3;
-}
-
 /* MAIN CONTAINERS */
 .internal-layout-container {
   height: 100vh;
   width: 100vw;
   display: flex;
-  background-color: var(--bg-dark-1);
+  background-color: var(--bg-light-1);
 }
 .content-container {
-  background-color: var(--bg-dark-1);
+  background-color: var(--bg-light-2) !important;
   width: 100%;
   overflow: auto;
 }
 .sidebar-container {
-  background-color: var(--bg-dark-2);
+  background-color: var(--main-bg) !important;
   width: 260px;
   transition: width 0.3s ease-in-out;
 }
@@ -33,9 +25,9 @@
   align-items: center;
   padding-inline: 2rem;
   backdrop-filter: blur(10px);
-  background-color: var(--bg-dark-1);
+  background-color: var(--bg-light-2);
 }
 .content {
-  color: var(--color-light-1);
-  padding: 2rem 1.5rem;
+  color: var(--bg-dark-1);
+  padding: 1rem;
 }

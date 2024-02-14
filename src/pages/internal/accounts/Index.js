@@ -1,65 +1,17 @@
 import React, { useEffect, useMemo, useState } from "react";
 import SimpleButton from "../../../components/buttons/SimpleButton";
 import { Box } from "@mui/material";
-import MaterialTable from "../../../components/table/MaterialTable";
-import CreateIcon from "@mui/icons-material/Create";
-import DeleteIcon from "@mui/icons-material/Delete";
-import AddIcon from "@mui/icons-material/Add";
+import AccountsTable from "../../../components/table/MaterialTable";
+import { Create, Delete, Add } from "@mui/icons-material";
+import { useFetchAccounts } from "../../../hooks/useFetchAccounts";
+import Modal from "../../../components/modal/CustomModal";
+import ModalBody from "../../../components/modal/ModalBody";
+
+import ModalFooter from "../../../components/modal/ModalFooter";
 const Index = () => {
-  const apiEndpoint = "http://localhost:3001/api/";
-  const [tableUsers, setTableUsers] = useState([]);
   const [userData, setUserData] = useState([]);
-  const [enableLoading, setEnableLoading] = useState(true);
-  //should be memoized or stable
-  const columns = useMemo(
-    () => [
-      {
-        accessorFn: (row) => row.fullName, //access nested data with dot notation
-        header: "Full Name",
-      },
-      {
-        accessorFn: (row) => row.contact, //access nested data with dot notation
-        header: "Contact number",
-      },
-      {
-        accessorFn: (row) => row.email, //access nested data with dot notation
-        header: "Email",
-      },
-      {
-        accessorFn: (row) => row.username, //access nested data with dot notation
-        header: "Username",
-      },
-      {
-        accessorFn: (row) =>
-          row.position == 1
-            ? "Admin"
-            : row.position == 2
-            ? "Client"
-            : "Applicant",
-        header: "Position",
-      },
-    ],
-    []
-  );
-  async function getTableData() {
-    try {
-      const response = await fetch(apiEndpoint + "users"); // Replace with your server URL
-      const data = await response.json();
-      console.log(response);
-      if (response.ok) {
-        setTableUsers(data);
-        setEnableLoading(false);
-      } else {
-        alert("Table not displaying");
-        setEnableLoading(true);
-      }
-    } catch (error) {
-      console.error("Error fetching users:", error);
-    }
-  }
-  useEffect(() => {
-    getTableData();
-  }, []);
+  const { columns, tableUsers, enableLoading } = useFetchAccounts();
+
   // Create Modal
   const [createModal, setCreateModal] = useState(false);
   const createModalHide = () => {
@@ -85,55 +37,204 @@ const Index = () => {
     setDeleteModal(true);
   };
   return (
-    <MaterialTable
-      columns={columns}
-      data={tableUsers}
-      enableLoading={enableLoading}
-      enableColumnActions={true}
-      enableHiding={true}
-      enableDensityToggle={true}
-      enableFullScreenToggle={true}
-      renderRowActions={({ row }) => (
-        <Box sx={{ display: "flex", gap: "0.5rem" }}>
-          {/* <button>{row.original.position}</button> */}
-          <SimpleButton
-            size={"sm"}
-            color={"light"}
-            classes={" rounded-pill"}
-            onClick={() => {
-              updateModalShow();
-              setUserData(row.original);
-            }}
-            label={<CreateIcon />}
-          />
-          <SimpleButton
-            size={"sm"}
-            color={"light"}
-            classes={"rounded-pill"}
-            onClick={() => {
-              deleteModalShow();
-              setUserData(row.original);
-            }}
-            label={<DeleteIcon />}
-          />
-        </Box>
-      )}
-      renderTopToolbarCustomActions={({ table }) => {
-        return (
-          <>
+    <>
+      <AccountsTable
+        columns={columns}
+        data={tableUsers}
+        enableLoading={enableLoading}
+        enableColumnActions={true}
+        enableHiding={true}
+        enableDensityToggle={true}
+        enableFullScreenToggle={true}
+        renderRowActions={({ row }) => (
+          <Box sx={{ display: "flex", gap: "0.5rem" }}>
+            {/* <button>{row.original.position}</button> */}
             <SimpleButton
-              color={"secondary"}
-              classes={"col-auto rounded-0"}
+              size={"sm"}
+              color={"light"}
+              classes={" rounded-pill"}
               onClick={() => {
-                createModalShow();
-                setUserData([]);
+                updateModalShow();
+                setUserData(row.original);
+                // console.log(row.original);
               }}
-              label={<AddIcon />}
+              label={<Create />}
             />
-          </>
-        );
-      }}
-    />
+            <SimpleButton
+              size={"sm"}
+              color={"light"}
+              classes={"rounded-pill"}
+              onClick={() => {
+                deleteModalShow();
+                setUserData(row.original);
+                // console.log(row.original);
+              }}
+              label={<Delete />}
+            />
+          </Box>
+        )}
+        renderTopToolbarCustomActions={({ table }) => {
+          return (
+            <>
+              <SimpleButton
+                color={"secondary"}
+                classes={"col-auto rounded-0"}
+                onClick={() => {
+                  createModalShow();
+                  setUserData([]);
+                }}
+                label={<Add />}
+              />
+            </>
+          );
+        }}
+      />
+      <Modal
+        isStatic={true}
+        size={"lg"}
+        show={createModal}
+        onHide={createModalHide}
+        title={"Add User"}>
+        <ModalBody>
+          <div className="row m-0 p-0">
+            <div className="col-12">
+              <label class="form-label">Fullname</label>
+              <input
+                type="text"
+                className="form-control"
+                value={"" || userData.fullName}
+              />
+            </div>
+            <div className="col-12 col-md-6 ">
+              {" "}
+              <label class="form-label">Email</label>
+              <input
+                type="text"
+                className="form-control"
+                value={"" || userData.email}
+              />
+            </div>
+            <div className="col-12 col-md-6 ">
+              <label class="form-label">Contact Number</label>
+              <input
+                type="text"
+                className="form-control"
+                value={"" || userData.contact}
+              />
+            </div>
+            <div className="col-12 col-md-6 ">
+              <label class="form-label">Username</label>
+              <input
+                type="text"
+                className="form-control"
+                value={"" || userData.username}
+              />
+            </div>
+            <div className="col-12 col-md-6 ">
+              <label class="form-label">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                value={"" || userData.password}
+              />
+            </div>
+            <div className="col-12 col-md-6 ">
+              <label class="form-label">Position</label>
+              <select class="form-select" value={"" || userData.position}>
+                <option>Open this select menu</option>
+                <option value="1">Admin</option>
+                <option value="2">Client</option>
+                <option value="3">Applicant</option>
+              </select>
+            </div>
+          </div>
+        </ModalBody>
+        <ModalFooter onHide={createModalHide}>
+          <SimpleButton color={"success"} label={"Add User"} />
+        </ModalFooter>
+      </Modal>
+      <Modal
+        isStatic={true}
+        size={"lg"}
+        show={updateModal}
+        onHide={updateModalHide}
+        title={"User Details"}>
+        <ModalBody>
+          <div className="row m-0 p-0">
+            <div className="col-12">
+              <label class="form-label">Fullname</label>
+              <input
+                type="text"
+                className="form-control"
+                value={"" || userData.fullName}
+              />
+            </div>
+            <div className="col-12 col-md-6 ">
+              {" "}
+              <label class="form-label">Email</label>
+              <input
+                type="text"
+                className="form-control"
+                value={"" || userData.email}
+              />
+            </div>
+            <div className="col-12 col-md-6 ">
+              <label class="form-label">Contact Number</label>
+              <input
+                type="text"
+                className="form-control"
+                value={"" || userData.contact}
+              />
+            </div>
+            <div className="col-12 col-md-6 ">
+              <label class="form-label">Username</label>
+              <input
+                type="text"
+                className="form-control"
+                value={"" || userData.username}
+              />
+            </div>
+            <div className="col-12 col-md-6 ">
+              <label class="form-label">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                value={"" || userData.password}
+              />
+            </div>
+            <div className="col-12 col-md-6 ">
+              <label class="form-label">Position</label>
+              <select class="form-select" value={"" || userData.position}>
+                <option value="1">Admin</option>
+                <option value="2">Client</option>
+                <option value="3">Applicant</option>
+              </select>
+            </div>
+          </div>
+        </ModalBody>
+        <ModalFooter onHide={updateModalHide}>
+          <SimpleButton color={"success"} label={"Update User"} />
+        </ModalFooter>
+      </Modal>
+      <Modal
+        size={"sm"}
+        show={deleteModal}
+        onHide={deleteModalHide}
+        title={"delete user"}>
+        <ModalBody>
+          <span>
+            Type <span className="text-danger">confirm</span> to delete this
+            user
+          </span>
+          <div className="col">
+            <input type="text" className="form-control" />
+          </div>
+        </ModalBody>
+        <ModalFooter onHide={deleteModalHide}>
+          <SimpleButton color={"danger"} label={"Delete user"}></SimpleButton>
+        </ModalFooter>
+      </Modal>
+    </>
   );
 };
 
