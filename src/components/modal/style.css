@@ -35,10 +35,10 @@
   color: var(--color-light-1);
 }
 .custom-modal-header {
-  font-family: "Poppins-Medium";
+  font-family: var(--ff-agdasima-b);
   text-transform: uppercase;
-  font-size: large;
-  font-weight: 900;
+  font-size: x-large;
+  font-weight: 1000;
 }
 .custom-modal-header,
 .custom-modal-footer {
@@ -46,7 +46,7 @@
   padding: 0.8rem;
 }
 .custom-modal-body {
-  padding: 1rem 1rem 2.5rem 1rem;
+  padding: 1rem 1rem 2rem 1rem;
   position: relative;
   height: calc(100% - auto - auto);
   overflow: auto;

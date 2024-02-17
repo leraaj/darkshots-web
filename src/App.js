@@ -12,11 +12,7 @@ import Profile from "./pages/internal/profile/Index";
 import Orders from "./pages/internal/orders/Index";
 import MediaFiles from "./pages/internal/mediaFiles/Index";
 import InternalLayout from "./components/shared/layouts/InternalLayout";
-import {
-  InternalContext,
-  InternalContextProvider,
-} from "./context/InternalContext";
-
+import { InternalContextProvider } from "./context/InternalContext";
 function App() {
   return (
     <InternalContextProvider>

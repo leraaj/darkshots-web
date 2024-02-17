@@ -5,7 +5,7 @@
   left: 0px;
   color: var(--color-light-2) !important;
   background-color: var(--main-bg);
-  font-family: "Poppins-Regular";
+  font-family: var(--ff-poppins);
   font-size: smaller;
   padding-inline-end: 0.5rem;
 }

@@ -5,13 +5,23 @@
   font-weight: bold;
 }
 @font-face {
-  font-family: "Poppins-Medium";
-  src: local("Poppins-Medium"),
-    url("../assets/fonts/Poppins-Medium.ttf") format("truetype");
+  font-family: "Agdasima-Regular";
+  src: local("Agdasima-Regular"),
+    url("../assets/fonts/Agdasima-Regular.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Agdasima-Bold";
+  src: local("Agdasima-Bold"),
+    url("../assets/fonts/Agdasima-Bold.ttf") format("truetype");
   font-weight: bold;
 }
 * {
-  --main-bg: var(--bg-dark-2);
+  --main-bg: var(--bg-dark-1);
+
+  --ff-poppins: "Poppins-Regular", sans-serif;
+  --ff-agdasima: "Agdasima-Regular", sans-serif;
+  --ff-agdasima-b: "Agdasima-Bold", sans-serif;
 
   --bg-dark-1: #000000;
   --bg-dark-2: #212529;
