@@ -1,8 +1,8 @@
 import React from "react";
 
-const ModalBody = ({ children, className }) => {
+const ModalBody = ({ children, classes, onSubmit }) => {
   return (
-    <div className={`custom-modal-body ${className && className}`}>
+    <div className={`custom-modal-body row mx-0 ${classes && classes}`}>
       {children}
     </div>
   );

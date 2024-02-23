@@ -1,17 +1,9 @@
 import React from "react";
 import SimpleButton from "../buttons/SimpleButton";
 
-const ModalFooter = ({ children, onHide }) => {
+const ModalFooter = ({ children }) => {
   return (
-    <div className="custom-modal-footer border-top">
-      {onHide && (
-        <SimpleButton
-          size={""}
-          color={"outline-light"}
-          label={"Close"}
-          onClick={onHide}
-        />
-      )}
+    <div className="custom-modal-footer border-top d-flex flex-row-reverse">
       {children}
     </div>
   );

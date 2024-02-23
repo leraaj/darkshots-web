@@ -4,7 +4,15 @@ import Modal from "./Modal";
 import ModalBackdrop from "./ModalBackdrop";
 import ModalContainer from "./ModalContainer";
 import ModalHeader from "./ModalHeader";
-const CustomModal = ({ show, onHide, isStatic, size, children, title }) => {
+const CustomModal = ({
+  show,
+  onHide,
+  isStatic,
+  size,
+  children,
+  title,
+  onSubmit,
+}) => {
   const display = show ? "fade show visible" : "fade invisible";
   const [staticPulse, setStaticPulse] = useState(false);
 
@@ -22,7 +30,8 @@ const CustomModal = ({ show, onHide, isStatic, size, children, title }) => {
           isStatic={isStatic}
           shouldPulse={staticPulse}
           setShouldPulse={setStaticPulse}
-          size={size}>
+          size={size}
+          onSubmit={onSubmit}>
           <ModalHeader
             title={title ? title : "Custom modal title"}
             onHide={onHide}

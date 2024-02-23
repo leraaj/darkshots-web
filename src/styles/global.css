@@ -34,3 +34,6 @@
   --link-gaps: 0.6rem;
   --list-indention: 1.8rem;
 }
+input:-internal-autofill-selected {
+  background-color: transparent !important;
+}

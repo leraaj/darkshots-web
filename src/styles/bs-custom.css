@@ -31,3 +31,9 @@
   outline: 0;
   box-shadow: 0 0.2rem rgba(255, 255, 255, 0.25) !important;
 }
+/* .is-valid {
+  border-bottom: green;
+}
+.is-invalid {
+  border-bottom: red;
+} */

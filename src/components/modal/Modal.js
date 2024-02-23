@@ -7,6 +7,7 @@ const Modal = ({
   shouldPulse,
   setShouldPulse,
   size,
+  onSubmit,
 }) => {
   const staticValue = isStatic == undefined ? true : !isStatic;
 
@@ -33,12 +34,15 @@ const Modal = ({
     };
   }, [staticValue]);
   return (
-    <div
-      className={`${display} custom-modal modal-${modalSize} ${
+    <form
+      className={`${display} custom-modal ${
+        onSubmit && "needs-validation mx-0 p-0"
+      }  modal-${modalSize} ${
         modalSize !== "fullscreen" && "mt-4"
-      }  d-flex flex-column ${shouldPulse ? "pulse-once" : ""}`}>
+      }  d-flex flex-column ${shouldPulse ? "pulse-once" : ""}`}
+      {...(onSubmit && { onSubmit: onSubmit, noValidate: true })}>
       {children}
-    </div>
+    </form>
   );
 };
 

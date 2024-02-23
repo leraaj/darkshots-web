@@ -54,7 +54,7 @@ const MaterialTable = ({
             enableColumnActions={enableColumnActions}
             enableFullScreenToggle={enableFullScreenToggle}
             positionActionsColumn="last"
-            initialState={{ pagination: { pageSize: 5 } }}
+            initialState={{ pagination: { pageSize: 10 } }}
             enableRowActions
             renderRowActions={renderRowActions}
             renderTopToolbarCustomActions={renderTopToolbarCustomActions}
